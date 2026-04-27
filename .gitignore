@@ -1,0 +1,17 @@
+﻿*.pt
+*.onnx
+*.trt
+*.engine
+__pycache__/
+*.pyc
+*.pyo
+logs/
+*.csv
+runs/
+dataset/
+combined3/
+*.zip
+*.mp4
+.vscode/
+.env
+venv/

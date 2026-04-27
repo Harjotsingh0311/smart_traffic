@@ -1,0 +1,11 @@
+ultralytics==8.4.36
+opencv-python
+numpy
+flask
+requests
+pygame
+pandas
+matplotlib
+torch
+torchvision
+roboflow

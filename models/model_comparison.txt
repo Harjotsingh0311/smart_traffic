@@ -1,0 +1,5 @@
+MODEL COMPARISON SUMMARY
+========================================
+YOLO11s        mAP50: 84.5% <- SELECTED
+YOLOv8n        mAP50: 84.0%
+RT-DETR-L      mAP50: 55.8%
