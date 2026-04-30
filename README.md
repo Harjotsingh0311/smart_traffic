@@ -5,21 +5,20 @@
 [![Ultralytics](https://img.shields.io/badge/Ultralytics-8.4.36-orange)](https://ultralytics.com)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.7.1+cu118-red)](https://pytorch.org)
 
-Real-time traffic intersection management using YOLO11s custom-trained on Indian traffic data. Detects 6 vehicle classes across 4 lanes simultaneously, adaptively controls signal timing, and grants immediate green wave to priority vehicles.
+Real-time traffic intersection management using YOLO11s custom-trained on Indian traffic data. Detects 6 vehicle classes , Monitors **one lane at a time** (auto‑rotates through all four), adaptively controls signal timing, and grants immediate green wave to priority vehicles.
 
 ---
 
 ## 🎯 Features
 
-- **4-Lane Simultaneous Detection** — dedicated video feed per lane (RIGHT / DOWN / LEFT / UP)
+- **Sequential Lane Monitoring** — auto‑rotates through RIGHT / DOWN / LEFT / UP lanes
 - **6 Vehicle Classes** — priority_vehicle, auto-rickshaw, bus, car, motorcycle, truck
 - **Adaptive Signal Timing** — green duration calculated from live vehicle density
 - **Priority Vehicle Green Wave** — 95% recall, immediate signal override
 - **Auto-Rotating Signals** — lanes cycle automatically based on congestion
-- **Live Web Dashboard** — Flask at `localhost:5000`, auto-refresh every 2s
 - **Pygame Simulation** — 2D intersection view synchronized with detections
 - **CSV Logging** — per-frame detection log with timestamps and metrics
-- **Edge Deployment Ready** — ONNX export for Jetson Nano 
+- **Edge Deployment Ready** — ONNX export for Jetson Nano
 
 ---
 
@@ -27,7 +26,7 @@ Real-time traffic intersection management using YOLO11s custom-trained on Indian
 
 | Model | mAP@0.5 | Size | Status |
 |---|---|---|---|
-| YOLOv8n | 83.6% | 21.5 MB | Baseline |
+| YOLOv8s | 83.6% | 21.5 MB | Baseline |
 | **YOLO11s** | **83.4%** | **18.3 MB** | ✅ **Deployed** |
 | RT-DETR-L | 55.6% | 113 MB | Excluded (6GB VRAM insufficient) |
 
@@ -95,7 +94,6 @@ python main.py        # Detection window + dashboard
 python simulation.py  # Pygame intersection simulation
 ```
 
-Open `http://localhost:5000` for the live dashboard.
 
 **Detection window controls:** `Q` = Quit, `R` = Restart videos
 
@@ -181,7 +179,7 @@ T = clamp(T, 10s, 60s)
 CONF_THRESH   = 0.30   # general detection confidence
 PV_THRESH     = 0.65   # priority vehicle threshold (stricter)
 NMS_IOU       = 0.45   # non-maximum suppression threshold
-PROCESS_EVERY = 2      # inference every N frames
+PROCESS_EVERY = 3      # inference every N frames
 
 LANE_VIDEOS = {
     'RIGHT': 'lane_right.mp4',
